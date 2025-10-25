@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+    <div layout:fragment="content">
+        <h2>Asientos Contables</h2>
+        <a th:href="@{/asientos/nuevo}" class="btn btn-primary mb-3">Nuevo Asiento</a>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Referencia</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="asiento : ${asientos}">
+                    <td th:text="${asiento.id}"></td>
+                    <td th:text="${#temporals.format(asiento.fecha, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${asiento.descripcion}"></td>
+                    <td th:text="${asiento.referencia}"></td>
+                    <td>
+                        <a th:href="@{/asientos/{id}/editar(id=${asiento.id})}" class="btn btn-sm btn-warning">Editar</a>
+                        <a th:href="@{/asientos/{id}/eliminar(id=${asiento.id})}" 
+                           class="btn btn-sm btn-danger"
+                           onclick="return confirm('¿Estás seguro de eliminar este asiento?')">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

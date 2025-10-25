@@ -1,0 +1,35 @@
+<div class="card">
+  <h2>Cuentas</h2>
+  <div *ngIf="error" style="color:crimson">{{ error }}</div>
+
+  <form (ngSubmit)="save()" #formRef="ngForm" style="margin-bottom:12px">
+    <div>
+      <label>Codigo</label>
+      <input name="codigo" [(ngModel)]="model.codigo" required />
+    </div>
+    <div>
+      <label>Nombre</label>
+      <input name="nombre" [(ngModel)]="model.nombre" required />
+    </div>
+    <div>
+      <label>Tipo</label>
+      <input name="tipo" [(ngModel)]="model.tipo" />
+    </div>
+    <div>
+      <label>Naturaleza</label>
+      <input name="naturaleza" [(ngModel)]="model.naturaleza" />
+    </div>
+    <div style="margin-top:8px">
+      <button type="submit">{{ model.id ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" (click)="reset()">Cancelar</button>
+    </div>
+  </form>
+
+  <ul>
+    <li *ngFor="let c of cuentas">
+  <strong>{{ c.codigo }}</strong> - {{ c.nombre }} <small>({{ c.tipo }} / {{ c.naturaleza }})</small>
+      <button (click)="edit(c)" style="margin-left:8px">Editar</button>
+      <button (click)="remove(c.id)" style="margin-left:6px">Eliminar</button>
+    </li>
+  </ul>
+</div>

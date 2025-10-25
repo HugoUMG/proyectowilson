@@ -1,0 +1,4 @@
+/* estilos simples para el login */
+.card { max-width: 480px; }
+label { display:block; margin-bottom:4px }
+input { width:100%; padding:6px; margin-bottom:8px; }
